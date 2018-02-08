@@ -15,16 +15,27 @@ google.maps.event.addDomListener(window, 'load', function() {
     var newMap = new google.maps.Map(map, options);
 
     // ----------------------- BTN ENCUENTRAME ------------------------------
-    document.getElementById('originBtn').addEventListener('click', findMe);
-    function findMe() {
+    document.getElementById('originBtn').addEventListener('click', createMarker);
+
+    // ----------------------------- MARKER -----------------------------------
+    function createMarker() {
       var marker = new google.maps.Marker({
         position: myLocation,
         animation: google.maps.Animation.DROP,
         map: newMap,
         title: 'Here you are!'
       });
-      marker.setIcon('assets/img/tinybike.png');
     };
+
+    // function markerBike(position, map) {
+    //   var marker = new google.maps.Marker({
+    //     position: position,
+    //     animation: google.maps.Animation.DROP,
+    //     map: map,
+    //     title: 'Here you are!'
+    //   });
+    //   marker.setIcon('assets/img/tinybike.png');
+    // }
 
     // ------------------- INICIO AUTOCOMPLETADO --------------------------------
     var autoOrigin = document.getElementById('originPoint');
@@ -63,6 +74,8 @@ google.maps.event.addDomListener(window, 'load', function() {
         if (status === google.maps.DirectionsStatus.OK) {
           dirRenderer.setMap(new google.maps.Map(map, options));
           dirRenderer.setDirections(results);
+          // markerBike(results.routes[0].legs[0].start_location, map);
+          // markerBike(results.routes[0].legs[0].end_location, map);
         } else {
           console.log('Error ' + status);
         }

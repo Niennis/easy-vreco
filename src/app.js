@@ -25,6 +25,7 @@ google.maps.event.addDomListener(window, 'load', function() {
         map: newMap,
         title: 'Here you are!'
       });
+      marker.setIcon('assets/img/tinybike.png');
     };
 
     // function markerBike(position, map) {

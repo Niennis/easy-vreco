@@ -10,6 +10,7 @@ google.maps.event.addDomListener(window, 'load', function() {
       center: myLocation,
       zoom: 14
     };
+
     var map = document.getElementById('map_canvas');
     var newMap = new google.maps.Map(map, options);
 
@@ -34,29 +35,6 @@ google.maps.event.addDomListener(window, 'load', function() {
     var searchDes = new google.maps.places.Autocomplete(autoDestiny);
     searchDes.bindTo('bounds', newMap);
     // ------------------- FIN AUTOCOMPLETADO --------------------------------
-    
-    // let originCoder = new google.maps.Geocoder();
-    // let objInfo = {
-    //   address: 'metro santa isabel, santiago chile',
-    // };
-    // originCoder.geocode(objInfo, fnCoder);
-    // function fnCoder(data) {
-    //   let coordenates = data[0].geometry.location; // obj latlng
-    //   let config = {
-    //     map: newMap,
-    //     animation: google.maps.Animation.DROP,
-    //     draggable: true,
-    //     position: coordenates,
-    //     title: 'Here you go!'
-    //   };
-    //   let markerOrigin = new google.maps.Marker(config);
-    //   markerOrigin.setIcon('assets/img/tinybike.png');
-    // };
-
-    // let miruta = [myLocation, ];
-    // let trazo = new google.maps.Polyline({path: miruta,
-    //   strokeColor: '#008080', strokeOpacity: 0.8, strokeWeight: 3});
-    // trazo.setMap(newMap);
 
     // ------------------- INICIO DIBUJAR RUTA --------------------------
 
@@ -65,6 +43,7 @@ google.maps.event.addDomListener(window, 'load', function() {
       var destinyRoute = document.getElementById('destinyPoint').value;
       console.log(originRoute);
       console.log(destinyRoute);
+
       var configDR = {
         map: newMap
       };
@@ -80,11 +59,9 @@ google.maps.event.addDomListener(window, 'load', function() {
       var dirService = new google.maps.DirectionsService();
       var dirRenderer = new google.maps.DirectionsRenderer();
 
-      // dirService.route(configDS, drawRoute);
-
       function drawRoute(results, status) {
         if (status === google.maps.DirectionsStatus.OK) {
-          dirRenderer.setMap(newMap);
+          dirRenderer.setMap(new google.maps.Map(map, options));
           dirRenderer.setDirections(results);
         } else {
           console.log('Error ' + status);
